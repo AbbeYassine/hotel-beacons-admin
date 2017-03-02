@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Running Docker 
 #### Creating image
-`docker build -t beacons-hotel-admin`
+`docker build -t hotel-beacons-admin`
 #### Runnig app 
 `docker run -d -p 8080:3000 -d beacons-hotel-admin`
 
