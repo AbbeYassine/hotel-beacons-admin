@@ -2,7 +2,6 @@
  * Created by Vyndee on 01/03/2017.
  */
 var mongoose = require("mongoose");
-var generateId = require("./plugins/generateId");
 
 var beaconSchema = new mongoose.Schema({
   id: {
