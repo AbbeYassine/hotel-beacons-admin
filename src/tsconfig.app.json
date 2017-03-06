@@ -13,6 +13,9 @@
     "target": "es5",
     "module": "es2015",
     "baseUrl": "",
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
     "types": []
   },
   "exclude": [
