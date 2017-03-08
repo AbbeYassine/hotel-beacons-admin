@@ -17,7 +17,11 @@ module.exports = {
       name: req.body.name,
       uuid: req.body.uuid,
       major: req.body.major,
-      minor: req.body.minor
+      minor: req.body.minor,
+      position: {
+        longitude: req.body.position.longitude,
+        latitude: req.body.position.latitude
+      }
     };
     Beacon.create(beacon, function (err, beacon) {
       if (err) return res.status(400).json(err);

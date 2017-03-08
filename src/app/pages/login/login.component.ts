@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
       this.userServ.setCurrentUser( user1 );
 
-      this.router.navigate( ['home'] );
+      this.router.navigate(['beacons/add']);
     } else {
       // je recupere l'erreur du php
       // et on le place dans un label, ou un toaster

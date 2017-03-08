@@ -26,6 +26,11 @@ var beaconSchema = new mongoose.Schema({
   minor: {
     type: String,
     required: true
+  },
+  position: {
+      type: Object,
+      required: true
+
   }
 });
 

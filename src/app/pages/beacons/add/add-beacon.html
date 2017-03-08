@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-6">
+    <sebm-google-map [streetViewControl]="false" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [styles]="styles"
+                     (mapClick)="mapClicked($event)">
+      <sebm-google-map-marker
+        (dragEnd)="markerDragEnd(marker, $event)"
+        [latitude]="marker.lat" [markerDraggable]="marker.draggable" [longitude]="marker.lng"></sebm-google-map-marker>
+    </sebm-google-map>
+  </div>
+  <div class="col-md-6">
+    <form (submit)="onSubmit()">
+      <div class="input-group element">
+        <span class="input-group-addon" id="basic-addon1">Name</span>
+        <input type="text" class="form-control" name="name" [(ngModel)]="beacon.name" placeholder="Name" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group element">
+        <span class="input-group-addon" id="basic-addon2">UUID</span>
+        <input type="text" class="form-control" name="uuid" [(ngModel)]="beacon.uuid" placeholder="UUID" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group element">
+        <span class="input-group-addon" id="basic-addon3">Major</span>
+        <input type="text" class="form-control" name="major" [(ngModel)]="beacon.major" placeholder="Major" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group element">
+        <span class="input-group-addon" id="basic-addon4">Minor</span>
+        <input type="text" class="form-control" name="minor" [(ngModel)]="beacon.minor" placeholder="Minor" aria-describedby="basic-addon1">
+      </div>
+      <div class="row" style="margin-top: 10px;margin-left: -5px">
+        <div class="col-md-6 ">
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon5">Long</span>
+            <input type="text" disabled="true" name="lng" [(ngModel)]="marker.lng" class="form-control" placeholder="Long"
+                   aria-describedby="basic-addon1">
+          </div>
+        </div>
+        <div class="col-md-6 ">
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon6">Lat</span>
+            <input type="text" disabled="true" name="lat" class="form-control" [(ngModel)]="marker.lat" placeholder="Lat"
+                   aria-describedby="basic-addon1">
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-add">Add</button>
+    </form>
+  </div>
+</div>
+

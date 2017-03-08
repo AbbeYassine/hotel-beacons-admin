@@ -8,6 +8,7 @@ var path = require('path');
 
 //Set our api routes
 app.use("/api", api);
+
 // Catch all other routes and return the index file
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
