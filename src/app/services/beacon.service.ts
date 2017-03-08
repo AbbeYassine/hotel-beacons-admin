@@ -17,10 +17,20 @@ export class BeaconService {
   create(beacon: Beacon) {
     console.log(JSON.stringify(beacon));
     return this.http
-      .post(Config.apiUrl+"/beacons/add",
+      .post(Config.apiUrl + "/beacons/add",
         JSON.stringify(beacon),
         {headers: this.headers}
       )
+      .toPromise()
+      .then(res => {
+        return res.json();
+      })
+      .catch(this.handleError)
+  }
+
+  getAll() {
+    return this.http
+      .get(Config.apiUrl + "/beacons")
       .toPromise()
       .then(res => {
         return res.json();

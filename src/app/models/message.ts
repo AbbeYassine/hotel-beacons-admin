@@ -1,17 +1,9 @@
-import { User } from './user';
-
+import {TimeOut} from "./shared/timeout";
+/**
+ * Created by Vyndee on 08/03/2017.
+ */
 export class Message {
-  public content: string;
-  public title: string;
-  public author: User;
-  public destination: User;
-  public date: string;
-
-  public constructor(data: any = {}) {
-    this.content = data.content || '';
-    this.title = data.title || '';
-    this.author = data.author || null;
-    this.destination = data.destination || null;
-    this.date = data.date || Date.now();
-  }
+  public in: string;
+  public out: string;
+  public timeout: TimeOut;
 }

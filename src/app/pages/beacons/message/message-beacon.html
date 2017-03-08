@@ -1,10 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+<div class="row">
+  <div class="col-md-6">
+    <sebm-google-map [streetViewControl]="false" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [styles]="styles">
+      <sebm-google-map-marker
+        *ngFor="let m of markers;let i=index"
+        (markerClick)="clickedMarker(i)"
+        [latitude]="m.latitude" [markerDraggable]="false"
+        [longitude]="m.longitude"></sebm-google-map-marker>
+    </sebm-google-map>
+  </div>
+  <div class="col-md-6">
+    <form (submit)="onSubmit()">
+      <div class="input-group element">
+        <span class="input-group-addon" id="basic-addon8">Nom beacon</span>
+        <input type="text" class="form-control" name="beacon-name" disabled="true" [(ngModel)]="beaconSelected.name"
+               placeholder="beacon name"
+               aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group element">
+        <span class="input-group-addon" id="basic-addon1">IN</span>
+        <input type="text" class="form-control" name="name" [(ngModel)]="message.in" placeholder="IN"
+               aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group element">
+        <span class="input-group-addon" id="basic-addon2">Out</span>
+        <input type="text" class="form-control" name="uuid" [(ngModel)]="message.out" placeholder="OUT"
+               aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group element">
+        <span class="input-group-addon" id="basic-addon3">Timout</span>
+        <input type="text" class="form-control" name="major" [(ngModel)]="message.timeout.content"
+               placeholder="Timout" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group element">
+        <span class="input-group-addon" id="basic-addon4">Period</span>
+        <input type="text" class="form-control" name="minor" [(ngModel)]="message.timeout.period" placeholder="Period"
+               aria-describedby="basic-addon1">
+      </div>
+      <button type="submit" class="btn btn-primary btn-add">Add Messge</button>
+    </form>
+  </div>
+</div>
+

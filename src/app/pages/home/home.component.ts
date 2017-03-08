@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
-import { Message } from '../../models/message';
 import { MessagesService } from '../../services/messages.service';
 import { User } from '../../models/user';
 
@@ -48,12 +47,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         lastname: 'LASTNAME'
     });
     // sending a test message
-    this.msgServ.addMessage( new Message( {
-        author: user2,
-        content: 'le contenu d\'un message d\'une importance extreme',
-        destination: user1,
-        title: 'un message super important'
-    }) );
   }
 
   public ngOnDestroy() {

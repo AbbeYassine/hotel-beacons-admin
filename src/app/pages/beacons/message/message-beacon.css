@@ -1,0 +1,15 @@
+.sebm-google-map-container {
+  height: 300px;
+}
+
+.element {
+  margin: 10px;
+}
+
+.btn-add {
+  margin: 0;
+  position: absolute;
+  left: 80%;
+  top: 110%;
+  width: 95px;
+}

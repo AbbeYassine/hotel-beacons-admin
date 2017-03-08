@@ -22,7 +22,8 @@ export class AddBeaconComponent implements OnInit, OnDestroy {
   marker: marker;
   beacon: Beacon;
 
-  constructor(private beaconService: BeaconService, private toasterService: NotificationService) {
+  constructor(private beaconService: BeaconService,
+              private toasterService: NotificationService) {
     // TODO
     let styles = [
       {
