@@ -9,6 +9,9 @@ import {Message} from "../../../models/message";
 import {BeaconService} from "../../../services/beacon.service";
 import {Beacon} from "../../../models/beacon";
 import {TimeOut} from "../../../models/shared/timeout";
+import {MessagesService} from "../../../services/messages.service";
+import {MessageService} from "../../../services/message.service";
+import {NotificationService} from "../../../services/notification.service";
 
 
 @Component({
@@ -29,9 +32,11 @@ export class MessageBeaconComponent implements OnInit, OnDestroy {
   lng: number = 10.2872767;
   zoom: number = 16;
   styles: any[];
-  markers : any[]=[];
+  markers: any[] = [];
 
-  constructor(private beaconService: BeaconService) {
+  constructor(private beaconService: BeaconService,
+              private messageService: MessageService,
+              private notificationService: NotificationService) {
     // TODO
     let styles = [
       {
@@ -87,12 +92,17 @@ export class MessageBeaconComponent implements OnInit, OnDestroy {
       }
     ];
     this.styles = styles;
-    this.message = new Message();
-    this.message.timeout = new TimeOut();
+    this.initializeObjects();
+
     this.beaconSelected = new Beacon();
 
 
     this.getAllBeacons();
+  }
+
+  initializeObjects() {
+    this.message = new Message();
+    this.message.timeout = new TimeOut();
   }
 
   public ngOnInit() {
@@ -113,8 +123,8 @@ export class MessageBeaconComponent implements OnInit, OnDestroy {
           baseContext.beacons = data;
           baseContext.beacons.forEach(function (item) {
             baseContext.markers.push({
-              latitude : parseFloat(item.position.latitude),
-              longitude : parseFloat(item.position.longitude)
+              latitude: parseFloat(item.position.latitude),
+              longitude: parseFloat(item.position.longitude)
             })
           })
 
@@ -127,5 +137,43 @@ export class MessageBeaconComponent implements OnInit, OnDestroy {
 
   public clickedMarker(index) {
     this.beaconSelected = this.beacons[index];
+    this.initializeObjects();
+    let baseContext = this;
+    this.messageService.getByBeaconId(this.beaconSelected.id)
+      .then(
+        data => {
+          if (data.length != 0) {
+            baseContext.message.in = data[0].in;
+            baseContext.message.out = data[0].out;
+            baseContext.message.timeout.content = data[0].timeout.content;
+            baseContext.message.timeout.period = data[0].timeout.period;
+
+
+            console.log("Message", baseContext.message);
+          }
+
+        },
+        error => {
+          console.log("Error");
+        })
+  }
+
+  onSubmit() {
+    console.log("Message", this.message);
+    if (this.message.isValid() && this.beaconSelected.id) {
+
+      this.messageService.createOrUpdateMessage(this.beaconSelected.id, this.message)
+        .then(
+          data => {
+            console.log(data);
+            this.notificationService.success("Succés");
+          },
+          error => {
+
+          }
+        )
+    } else {
+      this.notificationService.error("Remplir les champs");
+    }
   }
 }

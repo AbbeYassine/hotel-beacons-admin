@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 var beacons = require('../routes/beacons');
+var messages = require("../routes/message");
 
 /* GET api listing. */
 router.get('/', function (req, res) {
@@ -21,7 +22,7 @@ router.use(function (req, res, next) {
   // Set to true if you need the website to include cookies in the requests sent
   // to the API (e.g. in case you use sessions)
   res.setHeader('Access-Control-Allow-Credentials', true);
- // console.log(req);
+  // console.log(req);
   console.log('###### Request Triggered ######');
 
   console.log('From :' + req.url);
@@ -33,9 +34,16 @@ router.use(function (req, res, next) {
 
   next(); // make sure we go to the next routes and don't stop here
 });
+
+//Beacons
 router.route("/beacons")
   .get(beacons.getAll);
 router.route("/beacons/add")
   .post(beacons.createOne);
+
+//Message
+router.route("/message/beacon/:id")
+  .get(messages.getByIdBeacon)
+  .post(messages.updateOrCreate);
 
 module.exports = router;

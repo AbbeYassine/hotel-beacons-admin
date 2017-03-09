@@ -9,7 +9,7 @@ import {AngularFireModule, FirebaseAppConfig} from 'angularfire2';
 import {ToasterModule} from 'angular2-toaster/angular2-toaster';
 import {environment} from '../environments/environment';
 import {TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-translate';
-import { AgmCoreModule } from 'angular2-google-maps/core'
+import {AgmCoreModule} from 'angular2-google-maps/core'
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, '../public/assets/i18n', '.json');
 }
@@ -97,7 +97,7 @@ let pages = [
 // main bootstrap
 import {routing} from './app.routes';
 import {BeaconService} from "./services/beacon.service";
-
+import {MessageService} from "./services/message.service";
 
 
 @NgModule({
@@ -108,14 +108,15 @@ import {BeaconService} from "./services/beacon.service";
   ],
   imports: [
     ...modules,
-    routing ,
+    routing,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCx49k72qN0yBuWsUIpgAojQIrhB62vtrM'
     })
   ],
   providers: [
-    ...services ,
-    BeaconService
+    ...services,
+    BeaconService,
+    MessageService
   ]
 })
 export class AppModule {

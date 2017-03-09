@@ -3,6 +3,7 @@
  */
 import {Position} from "./shared/Position";
 export class Beacon {
+  public id: string;
   public name: string;
   public uuid: string;
   public major: string;
@@ -13,7 +14,7 @@ export class Beacon {
     if (this.name && this.uuid && this.major && this.minor && this.position) {
       return true;
     }
-    return false ;
+    return false;
   }
 
 }
