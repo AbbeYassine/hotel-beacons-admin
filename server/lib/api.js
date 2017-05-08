@@ -3,6 +3,9 @@ const router = express.Router();
 
 var beacons = require('../routes/beacons');
 var messages = require("../routes/message");
+var promotions = require('../routes/promotions');
+var activities = require('../routes/activities');
+var chambres = require('../routes/chambres');
 
 /* GET api listing. */
 router.get('/', function (req, res) {
@@ -45,5 +48,30 @@ router.route("/beacons/add")
 router.route("/message/beacon/:id")
   .get(messages.getByIdBeacon)
   .post(messages.updateOrCreate);
+/*
+//Promotions
+router.route("/promotions")
+  .get(promotions.getAll);
+router.route("/promotions/add")
+  .post(promotions.createOne);
+router.route("/promotions/delete")
+  .delete(actors.deleteOne)
+
+//Activities
+router.route("/activities")
+  .get(promotions.getAll);
+router.route("/activities/add")
+  .post(promotions.createOne);
+router.route("/activities/delete")
+  .delete(promotions.deleteOne);
+
+//chambres
+router.route("/chambres")
+  .get(chambres.getAll);
+router.route("/chambres/add")
+  .post(chambres.createOne);
+router.route("/chambres/delete")
+  .delete(chambres.deleteOne);
+*/
 
 module.exports = router;
