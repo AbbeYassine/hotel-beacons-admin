@@ -3,7 +3,7 @@ const http = require('http');
 var api = require('./lib/api');
 var express = require('express');
 var path = require('path');
-//catch all other
+
 
 
 //Set our api routes
