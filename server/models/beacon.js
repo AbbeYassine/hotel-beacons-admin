@@ -28,9 +28,13 @@ var beaconSchema = new mongoose.Schema({
     required: true
   },
   position: {
-      type: Object,
-      required: true
+    type: Object,
+    required: true
 
+  },
+  date: {
+    type: String,
+    required: false
   }
 });
 

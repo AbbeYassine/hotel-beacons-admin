@@ -91,13 +91,16 @@ let pages = [
   LoginComponent,
   RegisterComponent,
   AddBeaconComponent,
-  MessageBeaconComponent
+  MessageBeaconComponent,
+  PredictionPopulationComponent
 ];
 
 // main bootstrap
 import {routing} from './app.routes';
 import {BeaconService} from "./services/beacon.service";
 import {MessageService} from "./services/message.service";
+import {PredictionPopulationComponent} from "./pages/prediction/population/prediction-population.component";
+import {PredictionService} from "./services/prediction.service";
 
 
 @NgModule({
@@ -116,7 +119,8 @@ import {MessageService} from "./services/message.service";
   providers: [
     ...services,
     BeaconService,
-    MessageService
+    MessageService,
+    PredictionService
   ]
 })
 export class AppModule {

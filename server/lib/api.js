@@ -44,6 +44,12 @@ router.route("/beacons")
 router.route("/beacons/add")
   .post(beacons.createOne);
 
+router.route("/dataset")
+  .get(beacons.writeDataSet);
+
+router.route("/formatRegression")
+  .get(beacons.getDataFormat);
+
 //Message
 router.route("/message/beacon/:id")
   .get(messages.getByIdBeacon)

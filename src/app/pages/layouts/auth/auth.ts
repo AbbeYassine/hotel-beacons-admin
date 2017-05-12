@@ -55,6 +55,16 @@ export class LayoutsAuthComponent implements OnInit {
 
         ]
       },
+      {
+        'title': 'Prédiction',
+        'icon': 'dashboard',
+        'sublinks': [
+          {
+            'title': "Population",
+            "link": ["/prediction/population"]
+          }
+        ]
+      }
       /*,
        {
        'title': 'Client',

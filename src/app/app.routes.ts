@@ -11,6 +11,7 @@ import {LoginComponent} from './pages/login/login.component';
 import {RegisterComponent} from './pages/register/register.component';
 import {AddBeaconComponent} from "./pages/beacons/add/add-beacon.component";
 import {MessageBeaconComponent} from "./pages/beacons/message/message-beacon.component";
+import {PredictionPopulationComponent} from "./pages/prediction/population/prediction-population.component";
 
 const routes: Routes = [
   // logged routes
@@ -43,6 +44,11 @@ const routes: Routes = [
         canActivate: [CanActivateGuard],
         component: MessageBeaconComponent,
         path: 'beacons/message'
+      },
+      {
+        canActivate: [CanActivateGuard],
+        component: PredictionPopulationComponent,
+        path: 'prediction/population'
       }
     ],
     component: LayoutsAuthComponent,
