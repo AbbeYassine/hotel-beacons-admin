@@ -10,6 +10,8 @@ import {ToasterModule} from 'angular2-toaster/angular2-toaster';
 import {environment} from '../environments/environment';
 import {TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-translate';
 import {AgmCoreModule} from 'angular2-google-maps/core'
+import { ChartsModule } from 'ng2-charts';
+
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, '../public/assets/i18n', '.json');
 }
@@ -20,7 +22,9 @@ let modules = [
   BrowserModule,
   FormsModule,
   HttpModule,
-  RouterModule,
+  RouterModule.forRoot([
+    {path: 'stat', component: StatComponent }
+  ]),
   AngularFireModule.initializeApp(environment.firebase),
   TranslateModule.forRoot({
     deps: [Http],
@@ -82,6 +86,7 @@ import {LoginComponent} from './pages/login/login.component';
 import {RegisterComponent} from './pages/register/register.component';
 import {AddBeaconComponent} from "./pages/beacons/add/add-beacon.component";
 import {MessageBeaconComponent} from "./pages/beacons/message/message-beacon.component";
+import {StatComponent} from './pages/stat/stat.component';
 
 let pages = [
   HomeComponent,
@@ -92,7 +97,8 @@ let pages = [
   RegisterComponent,
   AddBeaconComponent,
   MessageBeaconComponent,
-  PredictionPopulationComponent
+  PredictionPopulationComponent,
+  StatComponent
 ];
 
 // main bootstrap
@@ -114,7 +120,8 @@ import {PredictionService} from "./services/prediction.service";
     routing,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCx49k72qN0yBuWsUIpgAojQIrhB62vtrM'
-    })
+    }),
+    ChartsModule
   ],
   providers: [
     ...services,
