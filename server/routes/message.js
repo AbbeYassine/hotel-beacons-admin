@@ -5,6 +5,7 @@
  * Created by Vyndee on 01/03/2017.
  */
 var Message = require("../models/message");
+var firebase = require('firebase');
 var mongoose = require("mongoose");
 module.exports = {
   getByIdBeacon: function (req, res, next) {
@@ -45,6 +46,22 @@ module.exports = {
           if (err) return res.status(400).json(err);
           res.status(201).json(message);
         })
+        var ref = firebase.app().database().ref();
+        ref.once('value')
+            .then(function(snap) {
+                console.log('snap.val()', snap.val());
+            });
+
+        var beaconsRef = ref.child('beacons');
+        // Create a new ref and log it’s push key
+        var beaconRef = beaconsRef.push();
+        console.log('beacon key', beaconRef.key);
+        // Create a new ref and save data to it in one step
+        var beaconRef = beaconsRef.push({
+            identifier:req.body.in,
+            uuid: req.param('id')
+        });
+
     }
   }
 };
