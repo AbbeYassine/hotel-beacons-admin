@@ -23,6 +23,7 @@
     "@angular/router": "^3.4.0",
     "@google-cloud/storage": "^1.1.0",
     "admin-lte": "^2.3.8",
+    "alasql": "^0.4.0",
     "angular-chart.js": "^1.1.1",
     "angular2-google-maps": "^0.17.0",
     "angular2-jwt": "^0.1.24",
@@ -41,8 +42,10 @@
     "fs": "0.0.1-security",
     "gcloud": "^0.37.2",
     "google-cloud": "^0.53.0",
+    "group-by": "0.0.1",
     "ionicons": "^3.0.0",
     "jquery": "^3.1.1",
+    "json-query": "^2.2.2",
     "mongodb": "^2.2.24",
     "mongoose": "^4.8.5",
     "ng2-bootstrap": "^1.1.16",
@@ -50,6 +53,7 @@
     "ng2-translate": "^4.2.0",
     "rxjs": "^5.3.1",
     "ts-helpers": "^1.1.1",
+    "underscore": "^1.8.3",
     "zone.js": "^0.7.2"
   },
   "devDependencies": {

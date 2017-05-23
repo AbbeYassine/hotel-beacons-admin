@@ -6,6 +6,7 @@ import {Beacon} from "../models/beacon";
 import {Headers, Http} from "@angular/http";
 import {Config} from "../config";
 import 'rxjs/add/operator/toPromise';
+
 @Injectable()
 export class BeaconService {
   private headers = new Headers({'Content-Type': 'application/json'});
@@ -29,6 +30,16 @@ export class BeaconService {
   }
 
   getAll() {
+    return this.http
+      .get(Config.apiUrl + "/beacons")
+      .toPromise()
+      .then(res => {
+        return res.json();
+      })
+      .catch(this.handleError)
+  }
+
+  filter() {
     return this.http
       .get(Config.apiUrl + "/beacons")
       .toPromise()
