@@ -48,6 +48,7 @@ module.exports = {
               // Create a new ref and save data to it in one step
               var promotionRef = promotionsRef.push({
                   title: fields.title,
+                  description: fields.description,
                   rating: fields.rating,
                   image: 'https://storage.googleapis.com/'+gcStorageBucketName+"/"+file.id,
               });
