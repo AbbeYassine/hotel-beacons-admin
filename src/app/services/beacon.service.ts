@@ -6,6 +6,7 @@ import {Beacon} from "../models/beacon";
 import {Headers, Http} from "@angular/http";
 import {Config} from "../config";
 import 'rxjs/add/operator/toPromise';
+import * as _ from 'underscore';
 
 @Injectable()
 export class BeaconService {
@@ -44,7 +45,11 @@ export class BeaconService {
       .get(Config.apiUrl + "/beacons")
       .toPromise()
       .then(res => {
-        return res.json();
+        
+        var beacons = JSON.parse(res.json());
+        var filtered = _.where(beacons, {date: "1"});
+        
+        return filtered;
       })
       .catch(this.handleError)
   }
