@@ -24,7 +24,7 @@ export class PredictionPopulationComponent implements OnInit, OnDestroy {
   lng: number = 10.2872767;
   zoom: number = 16;
   styles: any[];
-  marker: marker;
+  markers: marker[] = [];
   date: Date;
   radiusCircle: number;
   x: number = 851;
@@ -85,11 +85,6 @@ export class PredictionPopulationComponent implements OnInit, OnDestroy {
         ]
       }
     ];
-    this.marker = {
-      draggable: true,
-      lat: this.lat,
-      lng: this.lng
-    };
 
     this.styles = styles;
 
@@ -120,20 +115,39 @@ export class PredictionPopulationComponent implements OnInit, OnDestroy {
 
   onChange(event) {
     console.log(this.date);
-    var timeDiff = Math.abs(new Date().getTime() - this.date.getTime());
-    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    this.radiusCircle = Math.floor(Math.random() * 100 + 1);
-    console.log(this.radiusCircle);
-
-    this.predictionService.predictPopulation(diffDays)
+    this.markers = [];
+    let date = this.date.getDate() + "/" + (this.date.getMonth() + 1) + "/" + this.date.getFullYear();
+    this.predictionService.predictPopulation(date)
       .then(res => {
         console.log(res);
+        let data = res.data;
+        for (let i = 0; i < data.length; i++) {
+          this.markers.push({
+            draggable: false,
+            lat: parseFloat(data[i].beacon.position.latitude),
+            lng: parseFloat(data[i].beacon.position.longitude),
+            radius: data[i].predicted * 2,
+            color: getRandomColor()
+          })
+        }
       })
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
   }
+
+
 }
 interface marker {
   lat: number;
   lng: number;
   label?: string;
   draggable: boolean;
+  radius: number;
+  color : string;
 }

@@ -47,6 +47,9 @@ router.route("/beacons/add")
 router.route("/dataset")
   .get(beacons.writeDataSet);
 
+router.route("/prediction")
+  .post(beacons.predictionByDate);
+
 router.route("/formatRegression")
   .get(beacons.getDataFormat);
 
@@ -57,27 +60,27 @@ router.route("/message/beacon/:id")
 
 //Promotions
 /*router.route("/promotions")
-  .get(promotions.getAll);*/
+ .get(promotions.getAll);*/
 router.route("/promotions/add")
   .post(promotions.createOne);
 /*router.route("/promotions/delete")
-  .delete(actors.deleteOne)
+ .delete(actors.deleteOne)
 
-//Activities
-router.route("/activities")
-  .get(promotions.getAll);*/
+ //Activities
+ router.route("/activities")
+ .get(promotions.getAll);*/
 router.route("/activities/add")
   .post(activities.createOne);
 /*router.route("/activities/delete")
-  .delete(promotions.deleteOne);
+ .delete(promotions.deleteOne);
 
-//chambres
-router.route("/chambres")
-  .get(chambres.getAll);*/
+ //chambres
+ router.route("/chambres")
+ .get(chambres.getAll);*/
 router.route("/chambres/add")
   .post(chambres.createOne);
 /*router.route("/chambres/delete")
-  .delete(chambres.deleteOne);
-*/
+ .delete(chambres.deleteOne);
+ */
 
 module.exports = router;

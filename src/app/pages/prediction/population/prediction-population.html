@@ -2,15 +2,18 @@
   <div class="col-md-6">
     <sebm-google-map [streetViewControl]="false" [latitude]="lat" [longitude]="lng" [zoom]="zoom" [styles]="styles"
                      (mapClick)="mapClicked($event)">
-      <sebm-google-map-marker
-        (dragEnd)="markerDragEnd(marker, $event)"
-        [latitude]="marker.lat" [markerDraggable]="marker.draggable" [longitude]="marker.lng"></sebm-google-map-marker>
 
-      <sebm-google-map-circle [latitude]="lat" [longitude]="lng "
-                              [radius]="radiusCircle"
-                              [fillColor]="'red'"
-                              [circleDraggable]="false"
-                              [editable]="false">
+      <sebm-google-map-marker
+        *ngFor="let m of markers;let i=index"
+        [latitude]="m.lat" [markerDraggable]="false"
+        [longitude]="m.lng"></sebm-google-map-marker>
+
+      <sebm-google-map-circle
+        *ngFor="let m of markers;let i=index" [latitude]="m.lat" [longitude]="m.lng"
+        [radius]="m.radius"
+        [fillColor]="m.color"
+        [circleDraggable]="false"
+        [editable]="false">
       </sebm-google-map-circle>
 
     </sebm-google-map>

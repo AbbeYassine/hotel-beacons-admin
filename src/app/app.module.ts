@@ -10,7 +10,7 @@ import {ToasterModule} from 'angular2-toaster/angular2-toaster';
 import {environment} from '../environments/environment';
 import {TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-translate';
 import {AgmCoreModule} from 'angular2-google-maps/core'
-import { ChartsModule } from 'ng2-charts';
+import {ChartsModule} from 'ng2-charts';
 
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, '../public/assets/i18n', '.json');
@@ -22,9 +22,9 @@ let modules = [
   BrowserModule,
   FormsModule,
   HttpModule,
-  RouterModule.forRoot([
-    {path: 'stat', component: StatComponent }
-  ]),
+  /*RouterModule.forRoot([
+   {path: 'stat', component: StatComponent}
+   ]),*/
   AngularFireModule.initializeApp(environment.firebase),
   TranslateModule.forRoot({
     deps: [Http],
@@ -86,7 +86,7 @@ import {LoginComponent} from './pages/login/login.component';
 import {RegisterComponent} from './pages/register/register.component';
 import {AddBeaconComponent} from "./pages/beacons/add/add-beacon.component";
 import {MessageBeaconComponent} from "./pages/beacons/message/message-beacon.component";
-import {StatComponent} from './pages/stat/stat.component';
+
 
 let pages = [
   HomeComponent,
@@ -98,7 +98,7 @@ let pages = [
   AddBeaconComponent,
   MessageBeaconComponent,
   PredictionPopulationComponent,
-  StatComponent
+  //StatComponent
 ];
 
 // main bootstrap

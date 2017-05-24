@@ -17,13 +17,12 @@ export class PredictionService {
 
   }
 
-  predictPopulation(x: number) {
+  predictPopulation(date: string) {
 
     return this.http
-      .post(Config.apiPredictionUrl,
+      .post(Config.apiUrl + "/prediction",
         JSON.stringify({
-          x1: x,
-          x2: x
+          date: date
         }),
         {headers: this.headers}
       )
