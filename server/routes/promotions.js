@@ -28,12 +28,12 @@ module.exports = {
 
     form.parse(req, function (err, fields, files) {
 
-          var typeSplitting = files.image.type.split("/");
+          var typeSplitting = files.file.type.split("/");
           var imgType = typeSplitting[1];
-          fs.renameSync(files.image.path, files.image.path+"."+imgType)
-          console.log( files.image.path+"."+imgType);
+          fs.renameSync(files.file.path, files.file.path+"."+imgType)
+          console.log( files.file.path+"."+imgType);
 
-          promotionsImgBucket.upload(files.image.path+"."+imgType, function(err, file) {
+          promotionsImgBucket.upload(files.file.path+"."+imgType, function(err, file) {
             if (!err) {
               console.log('image uploaded into cloud storage ! '+JSON.stringify(file.id));
               //importing a promotion into firebase realtime database
@@ -50,7 +50,7 @@ module.exports = {
                   title: fields.title,
                   description: fields.description,
                   rating: fields.rating,
-                  image: 'https://storage.googleapis.com/'+gcStorageBucketName+"/"+file.id,
+                  image: 'https://storage.googleapis.com/'+gcStorageBucketName+"/"+file.id
               });
 
               if (err) return res.status(400).json(err);
