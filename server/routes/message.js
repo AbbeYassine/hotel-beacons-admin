@@ -58,6 +58,8 @@ module.exports = {
         console.log('beacon key', beaconRef.key);
         // Create a new ref and save data to it in one step
         var beaconRef = beaconsRef.push({
+            in: req.body.in,
+            out: req.body.out,
             identifier:req.body.in,
             uuid: req.param('id')
         });
