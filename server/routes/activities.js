@@ -24,45 +24,50 @@ module.exports = {
 
   createOne: function (req, res, next) {
 
+
     var form = new formidable.IncomingForm();
 
     form.parse(req, function (err, fields, files) {
 
-          var typeSplitting = files.file.type.split("/");
-          var imgType = typeSplitting[1];
-          fs.renameSync(files.file.path, files.file.path+"."+imgType)
-          console.log( files.file.path+"."+imgType);
+      if(files.file && fields.title && fields.summary) {
+        var typeSplitting = files.file.type.split("/");
+        var imgType = typeSplitting[1];
+        fs.renameSync(files.file.path, files.file.path + "." + imgType)
+        console.log(files.file.path + "." + imgType);
 
-          activitiesImgBucket.upload(files.file.path+"."+imgType, function(err, file) {
-            if (!err) {
-              console.log('image uploaded into cloud storage ! '+JSON.stringify(file.id));
-              //importing a promotion into firebase realtime database
+        activitiesImgBucket.upload(files.file.path + "." + imgType, function (err, file) {
+          if (!err) {
+            console.log('image uploaded into cloud storage ! ' + JSON.stringify(file.id));
+            //importing a promotion into firebase realtime database
 
-              realtimeDBref.once('value')
-                  .then(function(snap) {
-                  });
-
-              var activitiesRef = realtimeDBref.child('activities');
-              // Create a new ref and log it’s push key
-              var activityRef = activitiesRef.push();
-              // Create a new ref and save data to it in one step
-              var activityRef = activitiesRef.push({
-                  title: fields.title,
-                  summary: fields.summary,
-                  image: 'https://storage.googleapis.com/'+gcStorageBucketName+"/"+file.id,
+            realtimeDBref.once('value')
+              .then(function (snap) {
               });
 
-              if (err) return res.status(400).json(err);
+            var activitiesRef = realtimeDBref.child('activities');
+            // Create a new ref and log it’s push key
+            var activityRef = activitiesRef.push();
+            // Create a new ref and save data to it in one step
+            var activityRef = activitiesRef.push({
+              title: fields.title,
+              summary: fields.summary,
+              image: 'https://storage.googleapis.com/' + gcStorageBucketName + "/" + file.id,
+            });
 
-              res.status(201).json("added with success");
+            if (err) return res.status(400).json(err);
+
+            res.status(201).json("added with success");
 
 
-            }
-            else {
-              console.log('error upload ! '+err);
+          }
+          else {
+            console.log('error upload ! ' + err);
 
-            }
-          });
+          }
+        });
+      }else  {
+        res.status(400).json({message : "error in body " , status :false});
+      }
 
 
 

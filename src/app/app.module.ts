@@ -11,6 +11,7 @@ import {environment} from '../environments/environment';
 import {TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-translate';
 import {AgmCoreModule} from 'angular2-google-maps/core'
 import {ChartsModule} from 'ng2-charts';
+import {Uploader}      from 'angular2-http-file-upload';
 
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, '../public/assets/i18n', '.json');
@@ -98,6 +99,9 @@ let pages = [
   AddBeaconComponent,
   MessageBeaconComponent,
   PredictionPopulationComponent,
+  PromotionsComponent,
+  ActivitiesComponent,
+  ChambreComponent
   //StatComponent
 ];
 
@@ -107,6 +111,9 @@ import {BeaconService} from "./services/beacon.service";
 import {MessageService} from "./services/message.service";
 import {PredictionPopulationComponent} from "./pages/prediction/population/prediction-population.component";
 import {PredictionService} from "./services/prediction.service";
+import {PromotionsComponent} from "./pages/promotions/promotions.component";
+import {ActivitiesComponent} from "./pages/activities/activities.component";
+import {ChambreComponent} from "./pages/chambres/chambre.component";
 
 
 @NgModule({
@@ -124,6 +131,7 @@ import {PredictionService} from "./services/prediction.service";
     ChartsModule
   ],
   providers: [
+    Uploader,
     ...services,
     BeaconService,
     MessageService,
