@@ -26,6 +26,7 @@
     "alasql": "^0.4.0",
     "angular-chart.js": "^1.1.1",
     "angular2-google-maps": "^0.17.0",
+    "angular2-http-file-upload": "^1.0.6",
     "angular2-jwt": "^0.1.24",
     "angular2-toaster": "^1.0.2",
     "angular2-uuid": "^1.1.0",
