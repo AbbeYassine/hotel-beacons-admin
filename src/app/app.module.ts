@@ -23,9 +23,9 @@ let modules = [
   BrowserModule,
   FormsModule,
   HttpModule,
-  /*RouterModule.forRoot([
-   {path: 'stat', component: StatComponent}
-   ]),*/
+  RouterModule.forRoot([
+    {path: 'stat', component: StatComponent}
+  ]),
   AngularFireModule.initializeApp(environment.firebase),
   TranslateModule.forRoot({
     deps: [Http],
@@ -101,8 +101,8 @@ let pages = [
   PredictionPopulationComponent,
   PromotionsComponent,
   ActivitiesComponent,
-  ChambreComponent
-  //StatComponent
+  ChambreComponent,
+  StatComponent
 ];
 
 // main bootstrap
@@ -114,6 +114,7 @@ import {PredictionService} from "./services/prediction.service";
 import {PromotionsComponent} from "./pages/promotions/promotions.component";
 import {ActivitiesComponent} from "./pages/activities/activities.component";
 import {ChambreComponent} from "./pages/chambres/chambre.component";
+import {StatComponent} from "./pages/stat/stat.component";
 
 
 @NgModule({
